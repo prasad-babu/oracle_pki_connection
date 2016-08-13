@@ -30,7 +30,7 @@ public class PKIJDBCConnectionFactortyTest {
 		    rset = stmt.executeQuery("select user from dual");
 
 		    Assert.assertTrue(rset.next());
-		    Assert.assertEquals("CARATWDEV", rset.getString(1));
+		    Assert.assertEquals("USER_NAME", rset.getString(1));
 		    
 		    connection1 = factory.getConnection();
 		}
