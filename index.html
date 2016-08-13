@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>Oracle pki connection by prasad-babu</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>Oracle pki connection</h1>
+        <h2></h2>
+        <a href="https://github.com/prasad-babu/oracle_pki_connection" class="button"><small>View project on</small> GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h3>
+<a id="introduction" class="anchor" href="#introduction" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Introduction.</h3>
+
+<p>To reduce the time and complexity of setup and management of databases, the industry moved toward more automated solutions. Now, in the age of cloud computing, a lot of databases run on rented, cloud-hosted servers, where teams may have access to virtualized operating systems and databases, but not hardware. Having gotten rid of racking and booting servers, companies are now comfortable taking the next step—going entirely hands-off to let automation run the database from top to bottom. They get a database to connect to (and use to store and query data), but nothing else. In this scenario, the system is a fully managed “service,” hence the DBaaS moniker, offered by an external company, by IT for its internal customers, or a combination of the two.</p>
+
+<p>Database as a Service (DBaaS) is a cloud-based approach to the storage and management of structured data. DBaaS delivers database functionality similar to what is found in relational database management systems (RDBMSes). Being cloud-based, on the other hand, DBaaS provides a flexible, scalable, on-demand platform that's oriented toward self-service and easy management, particularly in terms of provisioning a business' own environment. DBaaS products typically provide enough monitoring capabilities to track performance and usage and to alert users to potential issues. The products can also generate at least some degree of data analytics.</p>
+
+<p>The tech giants, such as Amazon (DynamoDB) and Google (Bigtable), are offering a managed “as a service” version of DB. The customers get a great database without having to administer it.</p>
+
+<p>Eventhough DBaaS has its disadvantages, including a lack of control over network performance issues, unacceptable latency and application failures, for enterprise customers, the service offers another way to streamline their operations. As more companies (large and small) recognize the value of DBaaS, new services, providers, and features will transform the way users request and manage databases.</p>
+
+<h3>
+<a id="jdbc-connection" class="anchor" href="#jdbc-connection" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>JDBC Connection</h3>
+
+<p>There is a little difference in URL with traditionally getting connection(non-SSL). The URL pattern should be look like as below.</p>
+
+<p><code>jdbc:oracle:thin:@//&lt;IPaddress&gt;:1521/demos.lucasjellema.oraclecloud.internal.</code></p>
+
+<p>To get the connection with SSL, Oracle offers various options including auto login with client and server PKI certificates. They are called as ora-pki wallets. We can auto login (getting connection) with these wallet certificates. We only require DBaaS URL with defined pattern (as shown below)
+jdbc:oracle:thin:@(DESCRIPTION = (ADDRESS_LIST = (ADDRESS = (PROTOCOL = TCPS)(HOST = msi-vmintubswdevdb)(PORT = 1522))) (CONNECT_DATA = (SERVICE_NAME = dbsun11g)))</p>
+
+<p>We can get JDBC connection as below</p>
+
+<p><code>String url =</code>
+<code>"jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=tcps)(HOST=servernam</code>
+<code>e)(PORT=2484))(CONNECT_DATA=(SERVICE_NAME=servicename)))");</code>
+<code>Connection conn = DriverManager.getConnection(url, props);</code></p>
+
+<p>The properties to add</p>
+
+<p><code>oracle.net.authentication_services=(TCPS)</code>
+<code>javax.net.ssl.trustStore=&lt;path_to_wallet&gt;\\cwallet.sso</code>
+<code>javax.net.ssl.trustStoreType=SSO</code>
+<code>javax.net.ssl.keyStore=&lt; path_to_wallet &gt;\\cwallet.sso</code>
+<code>javax.net.ssl.keyStoreType=SSO</code></p>
+
+<p>Unfortunately there are some incompatibilities with the PKCS12 implementation provided by Sun. Consequently, you must use Oracle’s PKI provider, named “OraclePKI”, to access Oracle wallets from Java. If you enable auto-login in the wallet, an obfuscated copy of the wallet is created in the file “cwallet.sso” which can then be used without providing the password. This auto-login wallet format is used in the Oracle Single Sign On infrastructure thus the extension “sso”. To access auto-login wallets from Java, you also need to use Oracle’s PKI provider.</p>
+
+<h3>
+<a id="support-or-contact" class="anchor" href="#support-or-contact" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Support or Contact</h3>
+
+<p>For sample code (with SSL auto login wallets), please refer <a href="https://github.com/prasad-babu/oracle_pki_connection">https://github.com/prasad-babu/oracle_pki_connection</a> Contact <a href="https://github.com/prasad-babu" class="user-mention">@prasad-babu</a></p>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/prasad-babu/oracle_pki_connection/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/prasad-babu/oracle_pki_connection/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/prasad-babu/oracle_pki_connection"></a> is maintained by <a href="https://github.com/prasad-babu">prasad-babu</a>.</p>
+
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+  
+  </body>
+</html>
