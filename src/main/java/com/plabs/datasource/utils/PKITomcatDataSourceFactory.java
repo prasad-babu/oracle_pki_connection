@@ -15,10 +15,10 @@ import org.apache.tomcat.dbcp.dbcp.BasicDataSourceFactory;
 /**
  * <a>http://feijiangnan.blogspot.in/2013/09/oracle-database-11g-jdbc-connection.html</a>
  * <a>http://blog.c2b2.co.uk/2016/05/how-to-configure-oracle-wallet-with.html</a>
- * <Resource name="jdbc/oracle/msi" auth="Container" type="javax.sql.DataSource"
-                                                factory="com.metricstream.systemi.common.EncryptedDataSourceFactory"
+ * <Resource name="jdbc/oracle/data" auth="Container" type="javax.sql.DataSource"
+                                                factory="com.plabs.datasource.util.PKITomcatDataSourceFactory"
                                                 driverClassName="oracle.jdbc.driver.OracleDriver" url="jdbc:oracle:thin:@localhost:1521:db11gr2"
-                                                username="ECP61=" password="encryptedpassword"  maxActive="500" maxIdle="30" maxWait="-1" minPoolSize="50" maxPoolSize="500"
+                                                username="schema_user" password="encryptedpassword"  maxActive="500" maxIdle="30" maxWait="-1" minPoolSize="50" maxPoolSize="500"
                                                 logAbandoned="true"  removeAbandoned="true"  removeAbandonedTimeout="60"/>
 
  * http://blog.guntram.de/?p=81
