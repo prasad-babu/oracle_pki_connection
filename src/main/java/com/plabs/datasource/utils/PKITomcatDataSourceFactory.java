@@ -18,7 +18,8 @@ import org.apache.tomcat.dbcp.dbcp.BasicDataSourceFactory;
  * <Resource name="jdbc/oracle/data" auth="Container" type="javax.sql.DataSource"
                                                 factory="com.plabs.datasource.util.PKITomcatDataSourceFactory"
                                                 driverClassName="oracle.jdbc.driver.OracleDriver" url="jdbc:oracle:thin:@localhost:1521:db11gr2"
-                                                username="schema_user" password="encryptedpassword"  maxActive="500" maxIdle="30" maxWait="-1" minPoolSize="50" maxPoolSize="500"
+                                                maxActive="500" maxIdle="30" maxWait="-1" minPoolSize="50" maxPoolSize="500"
+						connectionProperties=""
                                                 logAbandoned="true"  removeAbandoned="true"  removeAbandonedTimeout="60"/>
 
  * http://blog.guntram.de/?p=81
