@@ -13,10 +13,10 @@ public class PKIJDBCConnectionFactory {
 	
 	private static PKIJDBCConnectionFactory instance;
 	
-	private static String DB_URL = "msi.db_url";
-	private static String DB_DRIVER = "msi.db_driver";//oracle.jdbc.driver.OracleDriver
-	private static String PKI_PROVIDER = "msi.pki_provider";//"oracle.security.pki.OraclePKIProvider"
-	private static String PKI_PROVIDER_POSITION = "msi.pki_provider_position";//3
+	private static String DB_URL = "db_url";
+	private static String DB_DRIVER = "db_driver";//oracle.jdbc.driver.OracleDriver
+	private static String PKI_PROVIDER = "pki_provider";//"oracle.security.pki.OraclePKIProvider"
+	private static String PKI_PROVIDER_POSITION = "pki_provider_position";//3
 	
 	private Properties properties;
 	private String url;
